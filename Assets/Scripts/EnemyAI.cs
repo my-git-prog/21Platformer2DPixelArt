@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EnemyController : Controller
+public class EnemyAI : CommandManager
 {
     [SerializeField] private WayPoint[] _wayPoints;
     [SerializeField] private float _wayPointDistance = 1f;
@@ -18,7 +18,7 @@ public class EnemyController : Controller
         if (way.magnitude < _wayPointDistance)
         {
             _currentWayPointNumber = ++_currentWayPointNumber % _wayPoints.Length;
-            
+
             return;
         }
 

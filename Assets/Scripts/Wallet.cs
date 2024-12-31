@@ -8,6 +8,7 @@ public class Wallet : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Coin coin))
         {
+            coin.Take();
             _money++;
         }
     }

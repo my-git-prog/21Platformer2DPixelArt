@@ -16,10 +16,10 @@ public class CoinSpawner : MonoBehaviour
     private void Awake()
     {
         _coinPool = new ObjectPool<Coin>(
-            createFunc: () => CreateFunc(),
-            actionOnGet: (obj) => ActionOnGet(obj),
-            actionOnRelease: (obj) => ActionOnRelease(obj),
-            actionOnDestroy: (obj) => ActionOnDestroy(obj),
+            createFunc: () => CreateCoin(),
+            actionOnGet: (coin) => ActiovateCoin(coin),
+            actionOnRelease: (coin) => DeactivateCoin(coin),
+            actionOnDestroy: (coin) => DestroyCoin(coin),
             collectionCheck: true,
             defaultCapacity: _defaultCapacity,
             maxSize: _maxSize
@@ -31,33 +31,33 @@ public class CoinSpawner : MonoBehaviour
         StartCoroutine(SpawnCoins());
     }
 
-    private Coin CreateFunc()
+    private Coin CreateCoin()
     {
         Coin newCoin = Instantiate(_coinPrefab);
-        newCoin.Destroying += DestroyingCoin;
+        newCoin.Destroying += ReleaseCoin;
 
         return newCoin;
     }
 
-    private void DestroyingCoin(Coin coin)
+    private void ReleaseCoin(Coin coin)
     {
         _coinPool.Release(coin);
     }
 
-    private void ActionOnGet(Coin coin)
+    private void ActiovateCoin(Coin coin)
     {
         coin.gameObject.SetActive(true);
     }
 
-    private void ActionOnRelease(Coin coin)
+    private void DeactivateCoin(Coin coin)
     {
         coin.gameObject.SetActive(false);
     }
 
-    private void ActionOnDestroy(Coin coin)
+    private void DestroyCoin(Coin coin)
     {
-        coin.Destroying -= DestroyingCoin;
-        Destroy(coin);
+        coin.Destroying -= ReleaseCoin;
+        Destroy(coin.gameObject);
     }
 
     private void TrySpawnCoin()

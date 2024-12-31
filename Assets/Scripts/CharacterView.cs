@@ -7,7 +7,6 @@ public class CharacterView : MonoBehaviour
     private const string ParameterIsMoving = "IsMoving";
 
     [SerializeField] private FloorSensor _floorSensor;
-    [SerializeField] private Controller _controller;
     [SerializeField] private DirectionState _directionState = DirectionState.Right;
     [SerializeField] private float _stopTime = 0.2f;
 
@@ -24,14 +23,12 @@ public class CharacterView : MonoBehaviour
     {
         _floorSensor.Landing += Land;
         _floorSensor.Flying += Fly;
-        _controller.Moving += Move;
     }
 
     private void OnDisable()
     {
         _floorSensor.Landing -= Land;
         _floorSensor.Flying -= Fly;
-        _controller.Moving -= Move;
     }
 
     private void Update()
@@ -56,7 +53,7 @@ public class CharacterView : MonoBehaviour
         _animator.SetBool(ParameterIsFlying, true);
     }
 
-    private void Move(float horizontal)
+    public void Move(float horizontal)
     {
         if(horizontal > 0f && _directionState != DirectionState.Right)
         {
