@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class FloorSensor : MonoBehaviour
 {
-    public event Action Landing;
-    public event Action Flying;
+    private int _landingCount = 0;
+
+    public event Action Landed;
+    public event Action Flied;
 
     public bool OnFloor { get; private set; }
 
@@ -12,8 +14,11 @@ public class FloorSensor : MonoBehaviour
     {
         if (collision.TryGetComponent(out Floor floor))
         {
-            Flying?.Invoke();
-            OnFloor = false;
+            if(--_landingCount == 0)
+            {
+                Flied?.Invoke();
+                OnFloor = false;
+            }
         }
     }
 
@@ -21,8 +26,11 @@ public class FloorSensor : MonoBehaviour
     {
         if (collision.TryGetComponent(out Floor floor))
         {
-            Landing?.Invoke();
-            OnFloor = true;
+            if(_landingCount++ == 0)
+            {
+                Landed?.Invoke();
+                OnFloor = true;
+            }
         }
     }
 }

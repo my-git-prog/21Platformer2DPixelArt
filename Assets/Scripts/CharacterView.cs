@@ -1,34 +1,26 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class CharacterView : MonoBehaviour
 {
-    private const string ParameterIsFlying = "IsFlying";
-    private const string ParameterIsMoving = "IsMoving";
-
     [SerializeField] private FloorSensor _floorSensor;
+    [SerializeField] private CharacterAnimator _characterAnimator;
     [SerializeField] private DirectionState _directionState = DirectionState.Right;
     [SerializeField] private float _stopTime = 0.2f;
 
-    private Animator _animator;
     private float _lastMoveTime = 0f;
     private MoveState _moveState = MoveState.Idle;
 
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
 
     private void OnEnable()
     {
-        _floorSensor.Landing += Land;
-        _floorSensor.Flying += Fly;
+        _floorSensor.Landed += Land;
+        _floorSensor.Flied += Fly;
     }
 
     private void OnDisable()
     {
-        _floorSensor.Landing -= Land;
-        _floorSensor.Flying -= Fly;
+        _floorSensor.Landed -= Land;
+        _floorSensor.Flied -= Fly;
     }
 
     private void Update()
@@ -37,7 +29,7 @@ public class CharacterView : MonoBehaviour
         {
             if (Time.time - _lastMoveTime > _stopTime)
             {
-                _animator.SetBool(ParameterIsMoving, false);
+                _characterAnimator.Stop();
                 _moveState = MoveState.Idle;
             }
         }
@@ -45,12 +37,12 @@ public class CharacterView : MonoBehaviour
 
     private void Land()
     {
-        _animator.SetBool(ParameterIsFlying, false);
+        _characterAnimator.Land();
     }
 
     private void Fly()
     {
-        _animator.SetBool(ParameterIsFlying, true);
+        _characterAnimator.Fly();
     }
 
     public void Move(float horizontal)
@@ -69,7 +61,7 @@ public class CharacterView : MonoBehaviour
         if(_moveState != MoveState.Move)
         {
             _moveState = MoveState.Move;
-            _animator.SetBool(ParameterIsMoving, true);
+            _characterAnimator.Move();
         }
 
         _lastMoveTime = Time.time;

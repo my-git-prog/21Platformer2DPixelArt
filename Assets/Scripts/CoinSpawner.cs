@@ -34,7 +34,7 @@ public class CoinSpawner : MonoBehaviour
     private Coin CreateCoin()
     {
         Coin newCoin = Instantiate(_coinPrefab);
-        newCoin.Destroying += ReleaseCoin;
+        newCoin.Taken += ReleaseCoin;
 
         return newCoin;
     }
@@ -56,7 +56,7 @@ public class CoinSpawner : MonoBehaviour
 
     private void DestroyCoin(Coin coin)
     {
-        coin.Destroying -= ReleaseCoin;
+        coin.Taken -= ReleaseCoin;
         Destroy(coin.gameObject);
     }
 

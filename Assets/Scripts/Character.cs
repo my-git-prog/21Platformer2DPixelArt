@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private CommandManager _commandManager;
+    [SerializeField] private Input _input;
     [SerializeField] private CharacterMover _mover;
     [SerializeField] private CharacterView _view;
     
     private void OnEnable()
     {
-        _commandManager.Moving += Move;
-        _commandManager.Jumping += Jump;
+        _input.Moving += Move;
+        _input.Jumping += Jump;
     }
 
     private void OnDisable()
     {
-        _commandManager.Moving -= Move;
-        _commandManager.Jumping -= Jump;
+        _input.Moving -= Move;
+        _input.Jumping -= Jump;
     }
 
     private void Move(float horizontal)

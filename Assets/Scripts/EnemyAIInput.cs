@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EnemyAI : CommandManager
+public class EnemyAIInput : Input
 {
     [SerializeField] private WayPoint[] _wayPoints;
     [SerializeField] private float _wayPointDistance = 1f;
@@ -11,7 +11,7 @@ public class EnemyAI : CommandManager
     public override event Action<float> Moving;
     public override event Action Jumping;
 
-    void Update()
+    private void Update()
     {
         Vector3 way = _wayPoints[_currentWayPointNumber].transform.position - transform.position;
 

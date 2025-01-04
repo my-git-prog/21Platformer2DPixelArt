@@ -3129,6 +3129,7 @@ GameObject:
   - component: {fileID: 1991107023}
   - component: {fileID: 1991107027}
   - component: {fileID: 1991107028}
+  - component: {fileID: 1991107032}
   - component: {fileID: 1991107030}
   - component: {fileID: 1991107031}
   m_Layer: 0
@@ -3318,6 +3319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _floorSensor: {fileID: 1361319924}
+  _characterAnimator: {fileID: 1991107032}
   _directionState: 1
   _stopTime: 0.2
 --- !u!114 &1991107030
@@ -3344,9 +3346,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83509c6d53785445853cc308a3a814b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _commandManager: {fileID: 1991107030}
+  _input: {fileID: 1991107030}
   _mover: {fileID: 1991107027}
   _view: {fileID: 1991107028}
+--- !u!114 &1991107032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991107019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395db956cf70c6b41a34ac14af767e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1001 &2002430111
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,13 +12,13 @@ public class CoinSpawnPoint : MonoBehaviour
     public void AddCoin(Coin coin)
     {
         IsEmpty = false;
-        coin.Destroying += Empty;
+        coin.Taken += Empty;
         coin.transform.position = transform.position;
     }
 
     private void Empty(Coin coin)
     {
         IsEmpty = true;
-        coin.Destroying -= Empty;
+        coin.Taken -= Empty;
     }
 }
