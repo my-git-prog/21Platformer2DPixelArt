@@ -6,7 +6,7 @@ public class Wallet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Coin coin))
+        if (collision.TryGetComponent(out Coin coin))
         {
             coin.Take();
             _money++;

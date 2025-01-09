@@ -10,17 +10,18 @@ public class CharacterView : MonoBehaviour
     private float _lastMoveTime = 0f;
     private MoveState _moveState = MoveState.Idle;
 
+    public DirectionState Direction => _directionState;
 
     private void OnEnable()
     {
-        _floorSensor.Landed += Land;
-        _floorSensor.Flied += Fly;
+        _floorSensor.Landed += _characterAnimator.Land;
+        _floorSensor.Flied += _characterAnimator.Fly;
     }
 
     private void OnDisable()
     {
-        _floorSensor.Landed -= Land;
-        _floorSensor.Flied -= Fly;
+        _floorSensor.Landed -= _characterAnimator.Land;
+        _floorSensor.Flied -= _characterAnimator.Fly;
     }
 
     private void Update()
@@ -35,19 +36,14 @@ public class CharacterView : MonoBehaviour
         }
     }
 
-    private void Land()
-    {
-        _characterAnimator.Land();
-    }
-
-    private void Fly()
-    {
-        _characterAnimator.Fly();
-    }
-
     public void Move(float horizontal)
     {
-        if(horizontal > 0f && _directionState != DirectionState.Right)
+        if (horizontal == 0f)
+            return;
+
+        _lastMoveTime = Time.time;
+
+        if (horizontal > 0f && _directionState != DirectionState.Right)
         {
             _directionState = DirectionState.Right;
             Rotate();
@@ -63,12 +59,29 @@ public class CharacterView : MonoBehaviour
             _moveState = MoveState.Move;
             _characterAnimator.Move();
         }
-
-        _lastMoveTime = Time.time;
     }
 
     private void Rotate()
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void KickAttack()
+    {
+        _characterAnimator.KickAttack();
+    }
+    public void PunchAttack()
+    {
+        _characterAnimator.PunchAttack();
+    }
+
+    public void Hurt()
+    {
+        _characterAnimator.Hurt();
+    }
+
+    public void Die()
+    {
+        _characterAnimator.Die();
     }
 }

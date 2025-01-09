@@ -1,23 +1,27 @@
 using System;
 using UnityEngine;
 
-public class UserInput : Input
+public class UserInput : MonoBehaviour
 {
-    private const string Horizontal = "Horizontal";
-    private const string Jump = "Jump";
+    private const string HorizontalAxis = "Horizontal";
+    private const string JumpAxis = "Jump";
+    private const string AttackAxis = "Fire1";
 
-    public override event Action<float> Moving;
-    public override event Action Jumping;
+    public event Action JumpButtonClicked;
+    public event Action AttackButtonClicked;
+
+    public float Horizontal => Input.GetAxis(HorizontalAxis);
 
     private void Update()
     {
-        float horizontal = UnityEngine.Input.GetAxis(Horizontal);
-        float jump = UnityEngine.Input.GetAxisRaw(Jump);
-
-        if (horizontal != 0f)
-            Moving?.Invoke(horizontal);
+        float jump = Input.GetAxisRaw(JumpAxis);
 
         if (jump > 0f)
-            Jumping?.Invoke();
+            JumpButtonClicked?.Invoke();
+
+        float attack = Input.GetAxisRaw(AttackAxis);
+
+        if (attack > 0f)
+            AttackButtonClicked?.Invoke();
     }
 }

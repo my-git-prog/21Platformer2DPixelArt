@@ -1,12 +1,3 @@
-using System;
-using UnityEngine;
-
-public class Coin : MonoBehaviour
+public class Coin : Item
 {
-    public event Action<Coin> Taken;
-
-    public void Take()
-    {
-        Taken?.Invoke(this);
-    }
 }
