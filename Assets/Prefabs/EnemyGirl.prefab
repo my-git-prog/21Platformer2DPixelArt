@@ -254,9 +254,12 @@ GameObject:
   - component: {fileID: 8336157922025033849}
   - component: {fileID: 7999118585032856007}
   - component: {fileID: 6729491483923785876}
-  - component: {fileID: 5849599180744918397}
   - component: {fileID: 2067283407721522116}
   - component: {fileID: 5891864005415985200}
+  - component: {fileID: 5290686820769503228}
+  - component: {fileID: 6318346925012704404}
+  - component: {fileID: 2390387053918395133}
+  - component: {fileID: 7693797359799036731}
   m_Layer: 0
   m_Name: EnemyGirl
   m_TagString: Untagged
@@ -430,25 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fa7d42cebc64d4888efe5168b3b43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorSensor: {fileID: 9010376886155417335}
   _speed: 5
-  _jumpPower: 8
---- !u!114 &5849599180744918397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3472759757167884042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26dc63c142f1ac4fa554907b488fd7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _floorSensor: {fileID: 9010376886155417335}
-  _characterAnimator: {fileID: 2067283407721522116}
-  _directionState: 1
-  _stopTime: 0.2
 --- !u!114 &2067283407721522116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,24 +458,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15423b37c9a1c74cb50b55bf1797e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mover: {fileID: 6729491483923785876}
-  _view: {fileID: 5849599180744918397}
-  _health: 100
-  _armor: 10
-  _attackAreaAdvance: 0.5
-  _attackAreaSize: 1
-  _attackTime: 0.6
-  _kickAttackProbability: 0.3
-  _kickAttackDamage: 25
-  _punchAttackDamage: 15
-  _dieTime: 1
-  _wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  _wayPointDistance: 1
-  _vision: {fileID: 4547630387200795604}
+  Mover: {fileID: 6729491483923785876}
+  Jumper: {fileID: 5290686820769503228}
+  Flipper: {fileID: 2390387053918395133}
+  View: {fileID: 6318346925012704404}
+  MaxHealth: 100
+  Armor: 10
+  AttackAreaAdvance: 0.5
+  AttackAreaSize: 1
+  AttackTime: 0.55
+  KickAttackProbability: 0.3
+  KickAttackDamage: 25
+  PunchAttackDamage: 15
+  DieTime: 1
+  _patrolling: {fileID: 7693797359799036731}
   _attackArea: {fileID: 8734738821960760842}
   _barrierSensor: {fileID: 6459151535217794514}
+--- !u!114 &5290686820769503228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472759757167884042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f14b779a7087845b142c6342aa6e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _floorSensor: {fileID: 9010376886155417335}
+  _jumpPower: 8
+--- !u!114 &6318346925012704404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472759757167884042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc07e9b53dbbd0844a3008fb517e35f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _floorSensor: {fileID: 9010376886155417335}
+  _characterAnimator: {fileID: 2067283407721522116}
+  _stopTime: 0.2
+--- !u!114 &2390387053918395133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472759757167884042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589a1723bec926545ba408e8923919a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterDirection: 1
+--- !u!114 &7693797359799036731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472759757167884042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d62633707bb524bbe5d91bc61d4256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wayPoints: []
+  _wayPointDistance: 1
+  _vision: {fileID: 4547630387200795604}
 --- !u!1 &6827917989813853212
 GameObject:
   m_ObjectHideFlags: 0

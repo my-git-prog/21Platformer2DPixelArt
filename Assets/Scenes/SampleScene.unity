@@ -270,6 +270,18 @@ PrefabInstance:
       propertyPath: _wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 737628273}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1766430101}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 737628273}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -835,7 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9933a0b2d85d247bb4af4938b44fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerView: {fileID: 1991107028}
+  _playerFlipper: {fileID: 1991107035}
   _speed: 5
   _minimumPositionX: 0
   _maximumPositionX: 61
@@ -1249,6 +1261,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1456389830}
     - target: {fileID: 5891864005415985200, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1067131561}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1456389830}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
       propertyPath: _wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1067131561}
@@ -5470,7 +5494,7 @@ GameObject:
   - component: {fileID: 1658604954}
   - component: {fileID: 1658604953}
   m_Layer: 0
-  m_Name: Wallet
+  m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5539,6 +5563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _money: 0
+  _spawnerCoins: {fileID: 1406753672}
+  _spawnerMedicines: {fileID: 1353411027}
 --- !u!1 &1757560232
 GameObject:
   m_ObjectHideFlags: 0
@@ -9472,12 +9498,13 @@ GameObject:
   - component: {fileID: 1991107020}
   - component: {fileID: 1991107024}
   - component: {fileID: 1991107023}
-  - component: {fileID: 1991107033}
   - component: {fileID: 1991107027}
-  - component: {fileID: 1991107028}
   - component: {fileID: 1991107032}
   - component: {fileID: 1991107030}
   - component: {fileID: 1991107031}
+  - component: {fileID: 1991107034}
+  - component: {fileID: 1991107036}
+  - component: {fileID: 1991107035}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9649,25 +9676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fa7d42cebc64d4888efe5168b3b43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorSensor: {fileID: 1361319924}
   _speed: 5
-  _jumpPower: 8
---- !u!114 &1991107028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991107019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26dc63c142f1ac4fa554907b488fd7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _floorSensor: {fileID: 1361319924}
-  _characterAnimator: {fileID: 1991107032}
-  _directionState: 1
-  _stopTime: 0.2
 --- !u!114 &1991107030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9692,18 +9701,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83509c6d53785445853cc308a3a814b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mover: {fileID: 1991107027}
-  _view: {fileID: 1991107028}
-  _maxHealth: 100
-  _armor: 10
-  _attackAreaAdvance: 1
-  _attackAreaSize: 3
-  _attackTime: 0.5
-  _kickAttackProbability: 0.3
-  _kickAttackDamage: 25
-  _punchAttackDamage: 15
-  _dieTime: 1
+  Mover: {fileID: 1991107027}
+  Jumper: {fileID: 1991107034}
+  Flipper: {fileID: 1991107035}
+  View: {fileID: 1991107036}
+  MaxHealth: 100
+  Armor: 10
+  AttackAreaAdvance: 0.5
+  AttackAreaSize: 1
+  AttackTime: 0.5
+  KickAttackProbability: 0.3
+  KickAttackDamage: 25
+  PunchAttackDamage: 15
+  DieTime: 1
   _userInput: {fileID: 1991107030}
+  _inventory: {fileID: 1658604954}
 --- !u!114 &1991107032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9716,41 +9728,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395db956cf70c6b41a34ac14af767e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!70 &1991107033
-CapsuleCollider2D:
+--- !u!114 &1991107034
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991107019}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.07}
-  m_Size: {x: 0.23, y: 0.46}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f14b779a7087845b142c6342aa6e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _floorSensor: {fileID: 1361319924}
+  _jumpPower: 8
+--- !u!114 &1991107035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991107019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589a1723bec926545ba408e8923919a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterDirection: 1
+--- !u!114 &1991107036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991107019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc07e9b53dbbd0844a3008fb517e35f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _floorSensor: {fileID: 1361319924}
+  _characterAnimator: {fileID: 1991107032}
+  _stopTime: 0.2
 --- !u!1001 &1117767879270638442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9808,6 +9827,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1317029556}
     - target: {fileID: 5891864005415985200, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 431506777}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
+      propertyPath: _wayPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1317029556}
+    - target: {fileID: 7693797359799036731, guid: 05e47c5be6df14b43a1be24b37f1fc38, type: 3}
       propertyPath: _wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 431506777}
