@@ -260,8 +260,8 @@ GameObject:
   - component: {fileID: 6318346925012704404}
   - component: {fileID: 2390387053918395133}
   - component: {fileID: 7693797359799036731}
-  - component: {fileID: 1161970516967632975}
   - component: {fileID: 3556484173765566162}
+  - component: {fileID: 2040007629259234094}
   m_Layer: 0
   m_Name: EnemyGirl
   m_TagString: Untagged
@@ -464,7 +464,7 @@ MonoBehaviour:
   Jumper: {fileID: 5290686820769503228}
   Flipper: {fileID: 2390387053918395133}
   Attacker: {fileID: 3556484173765566162}
-  Health: {fileID: 1161970516967632975}
+  Health: {fileID: 2040007629259234094}
   DieTime: 1
   _patrolling: {fileID: 7693797359799036731}
   _attackArea: {fileID: 8734738821960760842}
@@ -497,7 +497,7 @@ MonoBehaviour:
   _floorSensor: {fileID: 9010376886155417335}
   _characterAnimator: {fileID: 2067283407721522116}
   _character: {fileID: 5891864005415985200}
-  _characterHealth: {fileID: 1161970516967632975}
+  _characterHealth: {fileID: 2040007629259234094}
   _characterAttacker: {fileID: 3556484173765566162}
   _stopTime: 0.2
 --- !u!114 &2390387053918395133
@@ -529,20 +529,6 @@ MonoBehaviour:
   _wayPointDistance: 1
   _vision: {fileID: 4547630387200795604}
   _barrierSensor: {fileID: 6459151535217794514}
---- !u!114 &1161970516967632975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3472759757167884042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7916b9a131fb35245af686a1ded65de2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 100
-  Armor: 10
 --- !u!114 &3556484173765566162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +547,22 @@ MonoBehaviour:
   _kickAttackProbability: 0.3
   _kickAttackDamage: 25
   _punchAttackDamage: 15
+--- !u!114 &2040007629259234094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472759757167884042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9fd73005ad03104ca8b94a29eff1059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maximumValue: 100
+  _minimumValue: 0
+  _armor: 10
+  _value: 100
 --- !u!1 &6827917989813853212
 GameObject:
   m_ObjectHideFlags: 0

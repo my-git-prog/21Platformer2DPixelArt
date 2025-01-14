@@ -9503,8 +9503,8 @@ GameObject:
   - component: {fileID: 1991107034}
   - component: {fileID: 1991107036}
   - component: {fileID: 1991107035}
-  - component: {fileID: 1991107038}
   - component: {fileID: 1991107037}
+  - component: {fileID: 1991107038}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9793,12 +9793,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1991107019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7916b9a131fb35245af686a1ded65de2, type: 3}
+  m_Script: {fileID: 11500000, guid: c9fd73005ad03104ca8b94a29eff1059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maximumHealth: 150
+  _maximumValue: 130
+  _minimumValue: 0
   _armor: 12
-  _health: 100
+  _value: 100
 --- !u!1001 &1117767879270638442
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,16 +9,14 @@ public class Inventory : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Coin coin))
+        if (collision.TryGetComponent(out Item item))
         {
-            _money += coin.Value;
-            coin.Take();
+            if (item is Coin) 
+                _money += item.Value;
+            else if(item is Medicine)
+                MedicineTaken?.Invoke(item.Value);
 
-        }
-        else if (collision.TryGetComponent(out Medicine medicine))
-        {
-            MedicineTaken?.Invoke(medicine.Value);
-            medicine.Take();
+            item.Take();
         }
     }
 }

@@ -5,7 +5,7 @@ public class CharacterView : MonoBehaviour
     [SerializeField] private FloorSensor _floorSensor;
     [SerializeField] private CharacterAnimator _characterAnimator;
     [SerializeField] private Character _character;
-    [SerializeField] private CharacterHealth _characterHealth;
+    [SerializeField] private Health _characterHealth;
     [SerializeField] private CharacterAttacker _characterAttacker;
     [SerializeField] private float _stopTime = 0.2f;
 

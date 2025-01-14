@@ -10,7 +10,7 @@ public class Player : Character
         base.OnEnable();
         _userInput.JumpButtonClicked += Jumper.Jump;
         _userInput.AttackButtonClicked += Attacker.Attack<Enemy>;
-        _inventory.MedicineTaken += Health.Heal;
+        _inventory.MedicineTaken += Health.TakeHeal;
     }
 
     protected override void OnDisable()
@@ -18,7 +18,7 @@ public class Player : Character
         base .OnDisable();
         _userInput.JumpButtonClicked -= Jumper.Jump;
         _userInput.AttackButtonClicked -= Attacker.Attack<Enemy>;
-        _inventory.MedicineTaken -= Health.Heal;
+        _inventory.MedicineTaken -= Health.TakeHeal;
     }
 
     private void Update()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour
@@ -7,7 +8,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected CharacterJumper Jumper;
     [SerializeField] protected CharacterFlipper Flipper;
     [SerializeField] protected CharacterAttacker Attacker;
-    [SerializeField] protected CharacterHealth Health;
+    [SerializeField] protected Health Health;
     [SerializeField] protected float DieTime = 1f;
 
     public event Action<float> Moved;
@@ -35,7 +36,7 @@ public abstract class Character : MonoBehaviour
 
     private void Die()
     {
-        Invoke(nameof(DestroyCharacter), DieTime);
+        StartCoroutine(DestroyCharacter());
     }
 
     public void TakeDamage(int damage)
@@ -43,8 +44,12 @@ public abstract class Character : MonoBehaviour
         Health.TakeDamage(damage);
     }
 
-    private void DestroyCharacter()
+    private IEnumerator DestroyCharacter()
     {
+        var wait = new WaitForSeconds(DieTime);
+
+        yield return wait;
+
         gameObject.SetActive(false);
     }
 }

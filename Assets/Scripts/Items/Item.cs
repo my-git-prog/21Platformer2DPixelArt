@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class Item: MonoBehaviour
 {
-    [SerializeField] private int Parameter = 0;
-    [SerializeField] private int _minimumParameter = 5;
-    [SerializeField] private int _maximumParameter = 20;
+    [SerializeField] private int _value = 0;
+    [SerializeField] private int _minimumValue = 5;
+    [SerializeField] private int _maximumValue = 20;
 
     public event Action<Item> Taken;
     
-    public int Value => Parameter;
+    public int Value => _value;
 
     private void Awake()
     {
-        Parameter = UnityEngine.Random.Range(_minimumParameter, _maximumParameter);
+        _value = UnityEngine.Random.Range(_minimumValue, _maximumValue);
     }
 
     public void Take()
