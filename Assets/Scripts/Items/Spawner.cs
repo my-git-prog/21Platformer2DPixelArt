@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -13,7 +12,6 @@ public class Spawner <T> : MonoBehaviour where T : Item
     [SerializeField] private int _maxSize = 50;
 
     private ObjectPool<T> _pool;
-    private Dictionary<T, ItemSpawnPoint> _itemsOnSpawnPoints = new ();
 
     private void Awake()
     {
@@ -30,21 +28,18 @@ public class Spawner <T> : MonoBehaviour where T : Item
 
     private void Start()
     {
-        StartCoroutine(SpawnCoins());
+        StartCoroutine(SpawnItems());
     }
 
     private T CreateItem()
     {
-        T newItem = Instantiate(_prefab);
-
-        return newItem;
+        return Instantiate(_prefab);
     }
 
-    public void ReleaseItem(T item)
+    public void ReleaseItem(Item item)
     {
-        _pool.Release(item);
-        _itemsOnSpawnPoints[item].Empty();
-        _itemsOnSpawnPoints.Remove(item);
+        item.Taken -= ReleaseItem;
+        _pool.Release(item as T);
     }
 
     private void ActivateItem(T item)
@@ -62,25 +57,25 @@ public class Spawner <T> : MonoBehaviour where T : Item
         Destroy(item.gameObject);
     }
 
-    private void TrySpawnCoin()
+    private void TrySpawnItem()
     {
         ItemSpawnPoint randomSpawnPoint = _itemSpawnPoints[Random.Range(0, _itemSpawnPoints.Length)];
 
         if (randomSpawnPoint.IsEmpty)
         {
             var item = _pool.Get();
+            item.Taken += ReleaseItem;
             randomSpawnPoint.AddItem(item);
-            _itemsOnSpawnPoints[item] = randomSpawnPoint;
         }
     }
 
-    private IEnumerator SpawnCoins()
+    private IEnumerator SpawnItems()
     {
         var wait = new WaitForSeconds(_spawnDeltaTime);
 
         while (_isSpawning)
         {
-            TrySpawnCoin();
+            TrySpawnItem();
             yield return wait;
         }
     }

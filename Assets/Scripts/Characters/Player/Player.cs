@@ -5,18 +5,20 @@ public class Player : Character
     [SerializeField] private UserInput _userInput;
     [SerializeField] private Inventory _inventory;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         _userInput.JumpButtonClicked += Jumper.Jump;
-        _userInput.AttackButtonClicked += Attack<Enemy>;
-        _inventory.MedicineTaken += HealHealth;
+        _userInput.AttackButtonClicked += Attacker.Attack<Enemy>;
+        _inventory.MedicineTaken += Health.Heal;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base .OnDisable();
         _userInput.JumpButtonClicked -= Jumper.Jump;
-        _userInput.AttackButtonClicked -= Attack<Enemy>;
-        _inventory.MedicineTaken -= HealHealth;
+        _userInput.AttackButtonClicked -= Attacker.Attack<Enemy>;
+        _inventory.MedicineTaken -= Health.Heal;
     }
 
     private void Update()
@@ -27,15 +29,5 @@ public class Player : Character
     protected override float GetHorizontalMovement()
     {
         return _userInput.Horizontal;
-    }
-
-    private void HealHealth(int medicine)
-    {
-        int health = Health + medicine;
-
-        if (health > MaxHealth)
-            Health = MaxHealth;
-        else
-            Health = health;
     }
 }

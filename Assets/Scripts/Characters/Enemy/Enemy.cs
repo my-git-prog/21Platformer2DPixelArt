@@ -4,22 +4,23 @@ public class Enemy : Character
 {
     [SerializeField] private EnemyPatrolling _patrolling;
     [SerializeField] private EnemyAttackArea _attackArea;
-    [SerializeField] private FloorSensor _barrierSensor;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        _barrierSensor.Landed += Jumper.Jump;
+        base.OnEnable();
+        _patrolling.BarrierReached += Jumper.Jump;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
-        _barrierSensor.Landed -= Jumper.Jump;
+        base.OnDisable();
+        _patrolling.BarrierReached -= Jumper.Jump;
     }
 
     private void Update()
     {
         if (_attackArea.IsPlayerReachable)
-            Attack<Player>();
+            Attacker.Attack<Player>();
         else
             Move();
     }

@@ -15,7 +15,7 @@ public class CharacterJumper : MonoBehaviour
 
     public void Jump()
     {
-        if (_floorSensor.OnFloor)
+        if (_floorSensor.IsFloor)
         {
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);

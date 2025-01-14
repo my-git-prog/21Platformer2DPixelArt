@@ -13,10 +13,12 @@ public class ItemSpawnPoint : MonoBehaviour
     {
         IsEmpty = false;
         item.transform.position = transform.position;
+        item.Taken += Empty;
     }
 
-    public void Empty()
+    private void Empty(Item item)
     {
+        item.Taken -= Empty;
         IsEmpty = true;
     }
 }

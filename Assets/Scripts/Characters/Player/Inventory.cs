@@ -4,8 +4,6 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private int _money = 0;
-    [SerializeField] private SpawnerCoins _spawnerCoins;
-    [SerializeField] private SpawnerMedicines _spawnerMedicines;
 
     public event Action<int> MedicineTaken;
 
@@ -14,13 +12,13 @@ public class Inventory : MonoBehaviour
         if (collision.TryGetComponent(out Coin coin))
         {
             _money += coin.Value;
-            _spawnerCoins.ReleaseItem(coin);
+            coin.Take();
 
         }
         else if (collision.TryGetComponent(out Medicine medicine))
         {
             MedicineTaken?.Invoke(medicine.Value);
-            _spawnerMedicines.ReleaseItem(medicine);
+            medicine.Take();
         }
     }
 }

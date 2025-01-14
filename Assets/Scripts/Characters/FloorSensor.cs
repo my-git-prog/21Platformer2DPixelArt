@@ -8,7 +8,7 @@ public class FloorSensor : MonoBehaviour
     public event Action Landed;
     public event Action Flied;
 
-    public bool OnFloor { get; private set; }
+    public bool IsFloor { get; private set; }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -17,7 +17,7 @@ public class FloorSensor : MonoBehaviour
             if(--_landingCount == 0)
             {
                 Flied?.Invoke();
-                OnFloor = false;
+                IsFloor = false;
             }
         }
     }
@@ -29,7 +29,7 @@ public class FloorSensor : MonoBehaviour
             if(_landingCount++ == 0)
             {
                 Landed?.Invoke();
-                OnFloor = true;
+                IsFloor = true;
             }
         }
     }
