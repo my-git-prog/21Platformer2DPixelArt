@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
             Hurted?.Invoke();
     }
 
-    public void TakeHeal(int medicine)
+    public void TakeMedicine(int medicine)
     {
         _value = Math.Clamp(_value + medicine, _minimumValue, _maximumValue);
     }
