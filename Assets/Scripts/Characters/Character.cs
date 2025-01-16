@@ -36,20 +36,11 @@ public abstract class Character : MonoBehaviour
 
     private void Die()
     {
-        StartCoroutine(DestroyCharacter());
+        gameObject.SetActive(false);
     }
 
     public void TakeDamage(int damage)
     {
         Health.TakeDamage(damage);
-    }
-
-    private IEnumerator DestroyCharacter()
-    {
-        var wait = new WaitForSeconds(DieTime);
-
-        yield return wait;
-
-        gameObject.SetActive(false);
     }
 }

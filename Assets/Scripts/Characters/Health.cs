@@ -10,6 +10,10 @@ public class Health : MonoBehaviour
 
     public event Action Died;
     public event Action Hurted;
+    public event Action ValueChanged;
+
+    public int MaximumValue => _maximumValue;
+    public int Value => _value;
 
     private void Awake()
     {
@@ -20,6 +24,7 @@ public class Health : MonoBehaviour
     {
         _value -= Math.Clamp(damage - _armor, _minimumValue, _maximumValue);
         _value = Math.Clamp(_value, _minimumValue, _maximumValue);
+        ValueChanged?.Invoke();
 
         if (_value == 0)
             Died?.Invoke();
@@ -27,8 +32,9 @@ public class Health : MonoBehaviour
             Hurted?.Invoke();
     }
 
-    public void TakeMedicine(int medicine)
+    public void TakeHealing(int medicine)
     {
         _value = Math.Clamp(_value + medicine, _minimumValue, _maximumValue);
+        ValueChanged?.Invoke();
     }
 }

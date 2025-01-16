@@ -7,6 +7,7 @@ public class CharacterView : MonoBehaviour
     [SerializeField] private Character _character;
     [SerializeField] private Health _characterHealth;
     [SerializeField] private CharacterAttacker _characterAttacker;
+    [SerializeField] private EffectDeath _effectDeath;
     [SerializeField] private float _stopTime = 0.2f;
 
     private float _lastMoveTime = 0f;
@@ -76,6 +77,6 @@ public class CharacterView : MonoBehaviour
 
     private void Die()
     {
-        _characterAnimator.Die();
+        Instantiate(_effectDeath, transform.position, Quaternion.identity);
     }
 }

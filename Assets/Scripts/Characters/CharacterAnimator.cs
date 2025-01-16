@@ -8,7 +8,6 @@ public class CharacterAnimator : MonoBehaviour
     private const string ParameterKickAttack = "KickAttack";
     private const string ParameterPunchAttack = "PunchAttack";
     private const string ParameterHurt = "Hurt";
-    private const string ParameterDeath = "Death";
 
     private Animator _animator;
 
@@ -50,10 +49,5 @@ public class CharacterAnimator : MonoBehaviour
     public void Hurt()
     {
         _animator.SetTrigger(ParameterHurt);
-    }
-
-    public void Die()
-    {
-        _animator.SetTrigger(ParameterDeath);
     }
 }
