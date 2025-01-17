@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +7,6 @@ public class RealBar : Bar
 
     protected override void SetValue()
     {
-        base.SetValue();
-
-        _slider.value = ((float)Value/MaximumValue);
+        _slider.value = ((float)BarViewable.Value / BarViewable.MaximumValue);
     }
 }

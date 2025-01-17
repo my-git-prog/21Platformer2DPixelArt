@@ -43,4 +43,9 @@ public abstract class Character : MonoBehaviour
     {
         Health.TakeDamage(damage);
     }
+
+    public int GiveHealth(int health)
+    {
+        return Health.GiveHealth(health);
+    }
 }

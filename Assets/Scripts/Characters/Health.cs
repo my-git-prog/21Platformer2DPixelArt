@@ -1,40 +1,45 @@
 using System;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : BarViewable
 {
-    [SerializeField] private int _maximumValue = 100;
-    [SerializeField] private int _minimumValue = 0;
     [SerializeField] private int _armor = 10;
-    [SerializeField] private int _value = 100;
 
     public event Action Died;
     public event Action Hurted;
-    public event Action ValueChanged;
-
-    public int MaximumValue => _maximumValue;
-    public int Value => _value;
+    public override event Action ValueChanged;
 
     private void Awake()
     {
-        _value = _maximumValue;
+        ValueIn = MaximumValueIn;
     }
 
     public void TakeDamage(int damage)
     {
-        _value -= Math.Clamp(damage - _armor, _minimumValue, _maximumValue);
-        _value = Math.Clamp(_value, _minimumValue, _maximumValue);
+        GiveHealth(damage, _armor);
+    }
+
+    public int GiveHealth(int damage, int armor = 0)
+    {
+        int healthDelta = Math.Clamp(damage - armor, MinimumValueIn, MaximumValueIn);
+        
+        if(healthDelta > ValueIn)
+            healthDelta = ValueIn;
+
+        ValueIn -= healthDelta;
         ValueChanged?.Invoke();
 
-        if (_value == 0)
+        if (ValueIn == MinimumValueIn)
             Died?.Invoke();
         else
             Hurted?.Invoke();
+
+        return healthDelta;
     }
 
-    public void TakeHealing(int medicine)
+    public void TakeHealing(int heal)
     {
-        _value = Math.Clamp(_value + medicine, _minimumValue, _maximumValue);
+        ValueIn = Math.Clamp(ValueIn + heal, MinimumValueIn, MaximumValueIn);
         ValueChanged?.Invoke();
     }
 }

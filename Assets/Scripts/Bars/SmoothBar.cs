@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +13,10 @@ public class SmoothBar : Bar
 
     protected override void SetValue()
     {
-        base.SetValue();
-
-        if(_coroutine != null )
+        if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _targetSliderValue = ((float)Value / MaximumValue);
+        _targetSliderValue = ((float)BarViewable.Value / BarViewable.MaximumValue);
 
         _coroutine = StartCoroutine(SmoothSlider());
     }
@@ -28,12 +25,11 @@ public class SmoothBar : Bar
     {
         var wait = new WaitForSeconds(_smoothDeltaTime);
 
-        while(_slider.value != _targetSliderValue)
+        while (_slider.value != _targetSliderValue)
         {
             _slider.value = Mathf.MoveTowards(_slider.value, _targetSliderValue, _smoothSpeed);
 
             yield return wait;
         }
     }
-
 }

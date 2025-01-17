@@ -6,9 +6,11 @@ public class UserInput : MonoBehaviour
     private const string HorizontalAxis = "Horizontal";
     private const string JumpAxis = "Jump";
     private const string AttackAxis = "Fire1";
+    private const string Attack2Axis = "Fire2";
 
     public event Action JumpButtonClicked;
     public event Action AttackButtonClicked;
+    public event Action Attack2ButtonClicked;
 
     public float Horizontal => Input.GetAxis(HorizontalAxis);
 
@@ -23,5 +25,10 @@ public class UserInput : MonoBehaviour
 
         if (attack > 0f)
             AttackButtonClicked?.Invoke();
+
+        float attack2 = Input.GetAxisRaw(Attack2Axis);
+
+        if (attack2 > 0f)
+            Attack2ButtonClicked?.Invoke();
     }
 }

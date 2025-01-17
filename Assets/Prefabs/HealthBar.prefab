@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0495ef47302fa0d49a0ccad174f90529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 0}
+  Health: {fileID: 0}
   _slider: {fileID: 755093548145767018}
 --- !u!1 &1083194796385379082
 GameObject:
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25bf4eebf96facf418e5318511297109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 0}
+  Health: {fileID: 0}
   _slider: {fileID: 5053172240345792869}
   _smoothSpeed: 0.01
   _smoothDeltaTime: 0.02
@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!1 &8888217712229119291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,6 +1315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03866084d5ceaba488306f2f609a2331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 0}
+  Health: {fileID: 0}
   _textMaximumValue: {fileID: 170787662662401638}
   _textValue: {fileID: 615581569591433377}

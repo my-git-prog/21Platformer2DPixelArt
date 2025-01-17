@@ -65,7 +65,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.91, y: 0}
   m_Size: {x: 1.79, y: 0.67}
   m_Direction: 1
 --- !u!114 &3690894406792192927
@@ -483,10 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9fd73005ad03104ca8b94a29eff1059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maximumValue: 100
-  _minimumValue: 0
+  MaximumVal: 100
+  Val: 100
   _armor: 10
-  _value: 100
 --- !u!70 &449519040393931318
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -688,7 +687,15 @@ PrefabInstance:
     m_TransformParent: {fileID: 4629129581266837848}
     m_Modifications:
     - target: {fileID: 3092421271131074649, guid: 0ec1ee06383e12e499c0787fcfd93959, type: 3}
+      propertyPath: Health
+      value: 
+      objectReference: {fileID: 3374354270620379488}
+    - target: {fileID: 3092421271131074649, guid: 0ec1ee06383e12e499c0787fcfd93959, type: 3}
       propertyPath: _health
+      value: 
+      objectReference: {fileID: 3374354270620379488}
+    - target: {fileID: 3092421271131074649, guid: 0ec1ee06383e12e499c0787fcfd93959, type: 3}
+      propertyPath: BarViewable
       value: 
       objectReference: {fileID: 3374354270620379488}
     - target: {fileID: 3526926684167856372, guid: 0ec1ee06383e12e499c0787fcfd93959, type: 3}

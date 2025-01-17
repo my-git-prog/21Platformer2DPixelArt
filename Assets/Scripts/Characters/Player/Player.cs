@@ -4,12 +4,14 @@ public class Player : Character
 {
     [SerializeField] private UserInput _userInput;
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private MagicVampire _magicVampire;
 
     protected override void OnEnable()
     {
         base.OnEnable();
         _userInput.JumpButtonClicked += Jumper.Jump;
         _userInput.AttackButtonClicked += Attacker.Attack<Enemy>;
+        _userInput.Attack2ButtonClicked += _magicVampire.StartMagic;
         _inventory.MedicineTaken += Health.TakeHealing;
     }
 
@@ -18,6 +20,7 @@ public class Player : Character
         base .OnDisable();
         _userInput.JumpButtonClicked -= Jumper.Jump;
         _userInput.AttackButtonClicked -= Attacker.Attack<Enemy>;
+        _userInput.Attack2ButtonClicked -= _magicVampire.StartMagic;
         _inventory.MedicineTaken -= Health.TakeHealing;
     }
 
