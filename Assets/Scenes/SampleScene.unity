@@ -1870,7 +1870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flipper: {fileID: 1991107035}
-  _attackAreaAdvance: 0.5
+  _attackAreaAdvance: 1
   _attackTime: 0.5
   _kickAttackProbability: 0.3
   _kickAttackDamage: 25

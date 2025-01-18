@@ -28,15 +28,15 @@ public class MagicArea : MonoBehaviour
         if (_enemies.Count == 0)
             return false;
 
-        float minimumDistance = float.MaxValue;
+        float sqrMinimumDistance = float.MaxValue;
 
         foreach (Enemy enemyInArea in _enemies)
         {
-            float distance = (transform.position - enemyInArea.transform.position).magnitude;
+            float sqDistance = (transform.position - enemyInArea.transform.position).sqrMagnitude;
             
-            if (distance < minimumDistance)
+            if (sqDistance < sqrMinimumDistance)
             {
-                minimumDistance = distance;
+                sqrMinimumDistance = sqDistance;
                 enemy = enemyInArea;
             }
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class CharacterAttacker : MonoBehaviour
 {
     [SerializeField] private CharacterFlipper _flipper;
-    [SerializeField] private float _attackAreaAdvance = 0.5f;
+    [SerializeField] private float _attackAreaAdvance = 1f;
     [SerializeField] private float _attackTime = 0.5f;
     [SerializeField] private float _kickAttackProbability = 0.3f;
     [SerializeField] private int _kickAttackDamage = 25;

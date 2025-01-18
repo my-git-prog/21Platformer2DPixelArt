@@ -225,8 +225,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15, y: -0.1}
-  m_Size: {x: 0.14, y: 0.45}
+  m_Offset: {x: 0.19, y: -0.1}
+  m_Size: {x: 0.22, y: 0.45}
   m_Direction: 0
 --- !u!114 &3880460027401031130
 MonoBehaviour:
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flipper: {fileID: 1460664230766393195}
-  _attackAreaAdvance: 0.5
+  _attackAreaAdvance: 1
   _attackTime: 0.5
   _kickAttackProbability: 0.3
   _kickAttackDamage: 25
@@ -483,8 +483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9fd73005ad03104ca8b94a29eff1059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumVal: 100
-  Val: 100
+  MaximumValueIn: 100
+  ValueIn: 100
   _armor: 10
 --- !u!70 &449519040393931318
 CapsuleCollider2D:

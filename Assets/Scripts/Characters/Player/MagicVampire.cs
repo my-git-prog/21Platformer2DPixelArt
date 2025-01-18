@@ -31,7 +31,7 @@ public class MagicVampire : BarViewable
             return;
 
         _area.gameObject.SetActive(true);
-        StartCoroutine(VampireEnemy());
+        StartCoroutine(TakeHealthFromEnemies());
     }
 
     private void StopMagic()
@@ -45,7 +45,7 @@ public class MagicVampire : BarViewable
         float elapsedTime = 0f;
         var wait = new WaitForSeconds(_timeStep);
 
-        while (elapsedTime < _restoreTime)
+        while (elapsedTime < _restoreTime && ValueIn < MaximumValueIn)
         {
             elapsedTime += _timeStep;
             ValueIn = (int)Mathf.Lerp(MinimumValueIn, MaximumValueIn, elapsedTime / _restoreTime);
@@ -55,7 +55,7 @@ public class MagicVampire : BarViewable
         }
     }
 
-    private IEnumerator VampireEnemy()
+    private IEnumerator TakeHealthFromEnemies()
     {
         float elapsedTime = 0f;
         var wait = new WaitForSeconds(_timeStep);
