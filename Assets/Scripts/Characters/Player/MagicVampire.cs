@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class MagicVampire : BarViewable
+public class MagicVampire : ParameterViewable
 {
     [SerializeField] private float _restoreTime = 4f;
     [SerializeField] private float _consumeTime = 6f;
@@ -25,7 +25,7 @@ public class MagicVampire : BarViewable
         StartCoroutine(RestoreMana());
     }
 
-    public void StartMagic()
+    public void StartWorking()
     {
         if (ValueIn < MaximumValueIn)
             return;
@@ -34,7 +34,7 @@ public class MagicVampire : BarViewable
         StartCoroutine(TakeHealthFromEnemies());
     }
 
-    private void StopMagic()
+    private void StopWorking()
     {
         _area.gameObject.SetActive(false);
         StartCoroutine(RestoreMana());
@@ -68,7 +68,7 @@ public class MagicVampire : BarViewable
 
             if(_area.TryGetEnemy(out Enemy enemy))
             {
-                _health.TakeHealing(enemy.GiveHealth(_healthOneStep));
+                _health.TakeHealing(enemy.TakeDamage(_healthOneStep, false));
             }
 
             if (elapsedTime < _consumeTime)
@@ -77,7 +77,7 @@ public class MagicVampire : BarViewable
             }
             else
             {
-                StopMagic();
+                StopWorking();
             }
         }
     }

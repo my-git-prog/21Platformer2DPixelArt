@@ -11,7 +11,7 @@ public class Player : Character
         base.OnEnable();
         _userInput.JumpButtonClicked += Jumper.Jump;
         _userInput.AttackButtonClicked += Attacker.Attack<Enemy>;
-        _userInput.Attack2ButtonClicked += _magicVampire.StartMagic;
+        _userInput.Attack2ButtonClicked += _magicVampire.StartWorking;
         _inventory.MedicineTaken += Health.TakeHealing;
     }
 
@@ -20,7 +20,7 @@ public class Player : Character
         base .OnDisable();
         _userInput.JumpButtonClicked -= Jumper.Jump;
         _userInput.AttackButtonClicked -= Attacker.Attack<Enemy>;
-        _userInput.Attack2ButtonClicked -= _magicVampire.StartMagic;
+        _userInput.Attack2ButtonClicked -= _magicVampire.StartWorking;
         _inventory.MedicineTaken -= Health.TakeHealing;
     }
 

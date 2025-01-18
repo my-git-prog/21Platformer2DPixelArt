@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Bar : MonoBehaviour
 {
-    [SerializeField] protected BarViewable BarViewable;
+    [SerializeField] protected ParameterViewable BarViewable;
 
     protected virtual void Start()
     {

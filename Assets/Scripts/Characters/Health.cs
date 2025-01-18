@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Health : BarViewable
+public class Health : ParameterViewable
 {
     [SerializeField] private int _armor = 10;
 
@@ -14,19 +14,14 @@ public class Health : BarViewable
         ValueIn = MaximumValueIn;
     }
 
-    public void TakeDamage(int damage)
+    public int TakeDamage(int damage, bool useArmor = true)
     {
-        GiveHealth(damage, _armor);
-    }
+        int delta = Math.Clamp(damage - (useArmor?_armor:0), MinimumValueIn, MaximumValueIn);
 
-    public int GiveHealth(int damage, int armor = 0)
-    {
-        int healthDelta = Math.Clamp(damage - armor, MinimumValueIn, MaximumValueIn);
-        
-        if(healthDelta > ValueIn)
-            healthDelta = ValueIn;
+        if (delta > ValueIn)
+            delta = ValueIn;
 
-        ValueIn -= healthDelta;
+        ValueIn -= delta;
         ValueChanged?.Invoke();
 
         if (ValueIn == MinimumValueIn)
@@ -34,7 +29,7 @@ public class Health : BarViewable
         else
             Hurted?.Invoke();
 
-        return healthDelta;
+        return delta;
     }
 
     public void TakeHealing(int heal)

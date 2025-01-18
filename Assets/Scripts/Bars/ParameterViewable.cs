@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class BarViewable : MonoBehaviour
+public abstract class ParameterViewable : MonoBehaviour
 {
     protected const int MinimumValueIn = 0;
 

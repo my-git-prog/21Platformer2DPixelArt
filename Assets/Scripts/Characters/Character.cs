@@ -39,13 +39,8 @@ public abstract class Character : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void TakeDamage(int damage)
+    public int TakeDamage(int damage, bool useArmor = true)
     {
-        Health.TakeDamage(damage);
-    }
-
-    public int GiveHealth(int health)
-    {
-        return Health.GiveHealth(health);
+        return Health.TakeDamage(damage, useArmor);
     }
 }
