@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SmoothBar : Bar
+public class SmoothBar <T> : Bar <T> where T : IViewableInBar
 {
     [SerializeField] private Slider _slider;
     [SerializeField] private float _smoothSpeed = 0.01f;
@@ -16,7 +16,7 @@ public class SmoothBar : Bar
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _targetSliderValue = ((float)BarViewable.Value / BarViewable.MaximumValue);
+        _targetSliderValue = ((float)ViewableInBar.Value / ViewableInBar.MaximumValue);
 
         _coroutine = StartCoroutine(SmoothSlider());
     }

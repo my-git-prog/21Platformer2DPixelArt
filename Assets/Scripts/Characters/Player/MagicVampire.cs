@@ -2,8 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class MagicVampire : ParameterViewable
+public class MagicVampire : MonoBehaviour, IViewableInBar
 {
+    private const int MinimumValue = 0;
+
+    [SerializeField] private int _value = 0;
+    [SerializeField] private int _maximumValue = 100;
     [SerializeField] private float _restoreTime = 4f;
     [SerializeField] private float _consumeTime = 6f;
     [SerializeField] private float _timeStep = 0.3f;
@@ -11,11 +15,15 @@ public class MagicVampire : ParameterViewable
     [SerializeField] private MagicArea _area;
     [SerializeField] private Health _health;
 
-    public override event Action ValueChanged;
+    public event Action ValueChanged;
+
+    public int MaximumValue => _maximumValue;
+    public int Value => _value;
+
 
     private void Awake()
     {
-        ValueIn = MinimumValueIn;
+        _value = MinimumValue;
         ValueChanged?.Invoke();
     }
 
@@ -27,7 +35,7 @@ public class MagicVampire : ParameterViewable
 
     public void StartWorking()
     {
-        if (ValueIn < MaximumValueIn)
+        if (_value < _maximumValue)
             return;
 
         _area.gameObject.SetActive(true);
@@ -45,10 +53,10 @@ public class MagicVampire : ParameterViewable
         float elapsedTime = 0f;
         var wait = new WaitForSeconds(_timeStep);
 
-        while (elapsedTime < _restoreTime && ValueIn < MaximumValueIn)
+        while (elapsedTime < _restoreTime && _value < _maximumValue)
         {
             elapsedTime += _timeStep;
-            ValueIn = (int)Mathf.Lerp(MinimumValueIn, MaximumValueIn, elapsedTime / _restoreTime);
+            _value = (int)Mathf.Lerp(MinimumValue, _maximumValue, elapsedTime / _restoreTime);
             ValueChanged?.Invoke();
 
             yield return wait;
@@ -63,7 +71,7 @@ public class MagicVampire : ParameterViewable
         while (elapsedTime < _consumeTime)
         {
             elapsedTime += _timeStep;
-            ValueIn = (int)Mathf.Lerp(MaximumValueIn, MinimumValueIn, elapsedTime / _consumeTime);
+            _value = (int)Mathf.Lerp(_maximumValue, MinimumValue, elapsedTime / _consumeTime);
             ValueChanged?.Invoke();
 
             if(_area.TryGetEnemy(out Enemy enemy))

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public abstract class Bar : MonoBehaviour
+public abstract class Bar<T> : MonoBehaviour where T : IViewableInBar
 {
-    [SerializeField] protected ParameterViewable BarViewable;
+    [SerializeField] public T ViewableInBar;
 
     protected virtual void Start()
     {
@@ -11,12 +11,12 @@ public abstract class Bar : MonoBehaviour
 
     private void OnEnable()
     {
-        BarViewable.ValueChanged += SetValue;
+        ViewableInBar.ValueChanged += SetValue;
     }
 
     private void OnDisable()
     {
-        BarViewable.ValueChanged -= SetValue;
+        ViewableInBar.ValueChanged -= SetValue;
     }
 
     protected abstract void SetValue();

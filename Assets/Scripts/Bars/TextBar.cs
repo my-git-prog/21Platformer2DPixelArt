@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TextBar : Bar
+public class TextBar <T> : Bar <T> where T : IViewableInBar
 {
     [SerializeField] private TextMeshProUGUI _textMaximumValue;
     [SerializeField] private TextMeshProUGUI _textValue;
@@ -14,11 +14,11 @@ public class TextBar : Bar
 
     private void SetMaximumValue()
     {
-        _textMaximumValue.text = BarViewable.MaximumValue.ToString();
+        _textMaximumValue.text = ViewableInBar.MaximumValue.ToString();
     }
 
     protected override void SetValue()
     {
-        _textValue.text = BarViewable.Value.ToString();
+        _textValue.text = ViewableInBar.Value.ToString();
     }
 }
